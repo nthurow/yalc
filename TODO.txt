@@ -1,0 +1,3 @@
+- Make sure it works with NPM workspaces (--workspace, --workspaces)
+- Allow passing additional args to "--pack" command? Or passing custom "pack" command?
+- Make sure that it works with --push

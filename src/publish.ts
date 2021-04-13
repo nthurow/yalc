@@ -63,6 +63,7 @@ export const publishPackage = async (options: PublishPackageOptions) => {
     return
   }
 
+  // Consider not running these scripts, since they should get run by "pack"?
   const preScripts: (keyof PackageScripts)[] = [
     'prepublish',
     'prepare',
@@ -79,6 +80,7 @@ export const publishPackage = async (options: PublishPackageOptions) => {
     return
   }
 
+  // Consider not running these scripts, since they should get run by "pack"?
   const postScripts: (keyof PackageScripts)[] = [
     'postyalcpublish',
     'postpack',

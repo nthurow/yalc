@@ -131,6 +131,8 @@ export const copyPackageToStore = async (options: {
     pkg.version
   )
 
+  /* Begin Irrelevant to --tgz */
+  // Probably wrap this in a "getFilesToCopy" func; --tgz would just return
   const ignoreFileContent = readIgnoreFile(workingDir)
 
   const ignoreRule = ignore().add(ignoreFileContent)
@@ -143,6 +145,7 @@ export const copyPackageToStore = async (options: {
     })
     console.info(`Total ${filesToCopy.length} files.`)
   }
+  /* End Irrelevant to --tgz */
   const copyFilesToStore = async () => {
     await fs.remove(storePackageStoreDir)
     return Promise.all(
@@ -184,6 +187,7 @@ export const copyPackageToStore = async (options: {
     ? '+' + signature.substr(0, shortSignatureLength)
     : ''
 
+  // Just set "options.workspaceResolve" to "false"?
   const resolveDeps = (pkg: PackageManifest): PackageManifest =>
     options.workspaceResolve ? resolveWorkspaces(pkg, workingDir) : pkg
 
