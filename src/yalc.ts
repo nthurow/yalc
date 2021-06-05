@@ -11,6 +11,7 @@ import {
   getStoreMainDir,
   yalcGlobal,
 } from '.'
+import { publishPackagePack } from './publishPack'
 
 import { showInstallations, cleanInstallations } from './installations'
 
@@ -106,7 +107,12 @@ yargs
         .boolean(['push'].concat(publishFlags))
     },
     handler: (argv) => {
-      return publishPackage(getPublishOptions(argv))
+      if (!argv.pack) {
+        return publishPackage(getPublishOptions(argv))
+      } else {
+        console.log('pack option used')
+        return publishPackagePack(getPublishOptions(argv))
+      }
     },
   })
   .command({

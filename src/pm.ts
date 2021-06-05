@@ -37,10 +37,10 @@ export const getPackageManager = (cwd: string): PackageMangerName => {
     pms.reduce<PackageMangerName | false>((found, pm) => {
       return (
         found ||
-        (pmMarkFiles[pm].reduce<PackageMangerName | false>(
-          (found, file) => found || (fs.existsSync(join(cwd, file)) && pm),
-          false
-        ) &&
+        (pmMarkFiles[pm].reduce<PackageMangerName | false>((found, file) => {
+          console.log('Checking for', join(cwd, file))
+          return found || (fs.existsSync(join(cwd, file)) && pm)
+        }, false) &&
           pm)
       )
     }, false) || defaultPm
